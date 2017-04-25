@@ -7,7 +7,7 @@
       </button>
      
       <q-toolbar-title :padding="1">
-        Title
+        Goshen Cloud
       </q-toolbar-title>
     </div>
 
@@ -37,7 +37,8 @@
         </q-drawer-link>
       </div>
     </q-drawer>
-   
+
+    <ContextMenu />
 
     <router-view class="layout-view"></router-view>
 
@@ -48,9 +49,14 @@
 </template>
 
 <script>
+import ContextMenu from '../components/Common/ContextMenu.vue'
+
 export default {
   data () {
     return {}
+  }, 
+  components: {
+    ContextMenu, 
   }
 }
 </script>

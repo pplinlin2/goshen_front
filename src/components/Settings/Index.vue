@@ -4,7 +4,6 @@
     <!-- your content -->
     <div class="layout-padding">
       <!-- if you want automatic padding -->
-      <button class="outline primary" @click="fullscreen">Fullscreen</button>
     </div>
   </div>
 </template>
@@ -15,11 +14,6 @@ import { AppFullscreen } from 'quasar'
 export default {
   data: () => ({
   }), 
-  methods: {
-    fullscreen: () => {
-      AppFullscreen.request()
-    }, 
-  }, 
 }
 </script>
 

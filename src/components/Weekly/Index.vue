@@ -4,7 +4,7 @@
     <!-- your content -->
     <div class="layout-padding">
       <!-- if you want automatic padding -->
-      <div class="list">
+      <div class="list item-delimiter largerFont">
         <q-collapsible opened group="weekly" icon="cloud_queue" label="主日崇拜">
           <div>
             <dl class="horizontal">
@@ -76,5 +76,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .largerFont {
+    font-size: 18px;
+  }
 </style>

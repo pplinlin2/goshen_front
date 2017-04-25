@@ -6,7 +6,7 @@
       <!-- if you want automatic padding -->
       <q-infinite-scroll :handler="refresher">
 
-        <div class="timeline">
+        <div class="timeline primary">
           <!-- label -->
           <div class="timeline-label">
             <h4 class="bg-white text-italic">
@@ -20,7 +20,6 @@
             </div>
             <!-- date timestamp -->
             <div class="timeline-date text-italic">
-              <div>17:01</div>
               <div>June 16th, 2016</div>
             </div>
 
@@ -28,9 +27,17 @@
               <div class="card-title">
                 {{ weekly.title }}
               </div>
-              <img :src="weekly.image" alt="">
+              <div class="card-media">
+                <img :src="weekly.image" alt="">
+                <button v-link=" '/weekly' " class="grey circular">
+                  <i>link</i>
+                </button>
+              </div>
               <div class="card-content">
-                {{ weekly.topic }}
+                <p>{{ weekly.preach.topic }}</p>
+                <p>{{ weekly.preach.preacher }}</p>
+                <p>{{ weekly.verses.content }}</p>
+                <p>{{ weekly.verses.cite }}</p>
               </div>
             </div>
           </div>
@@ -60,11 +67,25 @@ export default {
         {
           'title': '顯後第六主日', 
           'image': 'https://goshentp.files.wordpress.com/2011/09/img005-05-1-e1316700241931.jpg', 
-          'topic': '天大的好消息', 
+          'preach': {
+            'topic': '天大的好消息', 
+            'preacher': '陳志宏 牧師', 
+          }, 
+          'verses': {
+            'content': '同我上去的眾弟兄使百姓的心消化；但我專心跟從耶和華─我的神。', 
+            'cite': '約書亞十四:8', 
+          }
         }, {
           'title': '顯後第六主日', 
           'image': 'https://pic.pimg.tw/bethelaudio/1479450218-3011885985_n.jpg?v=1479450254', 
-          'topic': '天大的好消息', 
+          'preach': {
+            'topic': '天大的好消息', 
+            'preacher': '陳志宏 牧師', 
+          }, 
+          'verses': {
+            'content': '同我上去的眾弟兄使百姓的心消化；但我專心跟從耶和華─我的神。', 
+            'cite': '約書亞十四:8', 
+          }
         }, 
       ], 
     }
@@ -84,5 +105,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .largerFont {
+    font-size: 18px;
+  }
 </style>
