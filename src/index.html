@@ -8,8 +8,22 @@
 
     <title>Quasar App</title>
     <link rel="shortcut icon" type="image/x-icon" href="statics/favicon.ico">
+    <style>
+      /* https://css-tricks.com/almanac/properties/u/user-select/ */
+      .unselectable {
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        user-select: none;          /* Likely future */
+      }
+
+      /* http://stackoverflow.com/questions/29008194/disabling-androids-chrome-pull-down-to-refresh-feature */
+      .disable-pull-down-to-refresh {
+        overflow-y: hidden;
+      }
+    </style>
   </head>
-  <body>
+  <body class="unselectable disable-pull-down-to-refresh">
     <div id="q-app"></div>
     <!-- built files will be auto injected -->
   </body>
