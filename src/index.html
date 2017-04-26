@@ -21,6 +21,11 @@
       .disable-pull-down-to-refresh {
         overflow-y: hidden;
       }
+
+      /* http://stackoverflow.com/questions/3296644/hiding-the-scrollbar-on-an-html-page */
+      ::-webkit-scrollbar {
+        display: none;
+      }
     </style>
   </head>
   <body class="unselectable disable-pull-down-to-refresh">
