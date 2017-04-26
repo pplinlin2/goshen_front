@@ -26,9 +26,6 @@
         <q-drawer-link icon="timeline" :to="{path: '/weeklies', exact: true}">
           Weeklies
         </q-drawer-link>
-        <q-drawer-link icon="folder" :to="{path: '/weekly', exact: true}">
-          Weekly
-        </q-drawer-link>
         <q-drawer-link icon="photo" :to="{path: '/gallery', exact: true}">
           Gallery
         </q-drawer-link>
@@ -38,7 +35,7 @@
       </div>
     </q-drawer>
 
-    <ContextMenu />
+    <context-menu></context-menu>
 
     <router-view class="layout-view"></router-view>
 

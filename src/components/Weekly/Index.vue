@@ -1,6 +1,6 @@
 <template>
   <!-- root node required -->
-  <div>
+  <div id="weekly">
     <!-- your content -->
     <div class="layout-padding">
       <!-- if you want automatic padding -->
@@ -77,7 +77,10 @@ export default {
 </script>
 
 <style scoped>
+  .layout-padding {
+    overflow: hidden; 
+  }
   .largerFont {
-    font-size: 18px;
+    /*font-size: 18px;*/
   }
 </style>

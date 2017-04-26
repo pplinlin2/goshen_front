@@ -29,15 +29,15 @@
               </div>
               <div class="card-media">
                 <img :src="weekly.image" alt="">
-                <button v-link=" '/weekly' " class="grey circular">
+                <button class="grey circular" @click="$refs.layoutModal.open()">
                   <i>link</i>
                 </button>
               </div>
               <div class="card-content">
-                <p>{{ weekly.preach.topic }}</p>
-                <p>{{ weekly.preach.preacher }}</p>
-                <p>{{ weekly.verses.content }}</p>
-                <p>{{ weekly.verses.cite }}</p>
+                <div>{{ weekly.preach.topic }}</div>
+                <div class="light"> - {{ weekly.preach.preacher }}</div>
+                <div>{{ weekly.verses.content }}</div>
+                <div class="light"> - {{ weekly.verses.cite }}</div>
               </div>
             </div>
           </div>
@@ -47,6 +47,23 @@
           <spinner name="dots" slot="message" :size="40"></spinner>
         </div>
       </q-infinite-scroll>
+
+      <q-modal ref="layoutModal" class="maximized" :content-css="{minWidth: '80vw', minHeight: '80vh'}">
+        <q-layout>
+          <div slot="header" class="toolbar">
+            <button @click="$refs.layoutModal.close()">
+              <i>keyboard_arrow_left</i>
+            </button>
+            <q-toolbar-title :padding="1">
+              Header
+            </q-toolbar-title>
+          </div>
+          <div class="layout-view">
+            <weekly></weekly>
+          </div>
+          <context-menu></context-menu>
+        </q-layout>
+      </q-modal>
 
       <button
         v-back-to-top.animate="{offset: 500, duration: 200}"
@@ -60,6 +77,9 @@
 </template>
 
 <script>
+import Weekly from '../../components/Weekly/Index.vue'
+import ContextMenu from '../../components/Common/ContextMenu.vue'
+
 export default {
   data () {
     return {
@@ -102,11 +122,18 @@ export default {
       }, 2500)
     }, 
   }, 
+  components: {
+    ContextMenu, 
+    Weekly, 
+  }, 
 }
 </script>
 
 <style scoped>
   .largerFont {
     font-size: 18px;
+  }
+  .light {
+    color: #999999;
   }
 </style>

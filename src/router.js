@@ -24,7 +24,6 @@ export default new VueRouter({
     { path: '/', component: load('Index'), 
       children: [
         { path: 'weeklies', component: load('Weeklies/Index'), }, 
-        { path: 'weekly', component: load('Weekly/Index'), }, 
         { path: 'gallery', component: load('Gallery/Index'), }, 
         { path: 'settings', component: load('Settings/Index'), }, 
       ], 
