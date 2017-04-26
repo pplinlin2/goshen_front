@@ -6,7 +6,7 @@
       <!-- if you want automatic padding -->
       <q-infinite-scroll :handler="refresher">
 
-        <div class="timeline primary">
+        <div class="timeline">
           <!-- label -->
           <div class="timeline-label">
             <h4 class="bg-white text-italic">
@@ -16,7 +16,7 @@
           <!-- item -->
           <div v-for="(weekly, index) in weeklies" class="timeline-item">
             <div class="timeline-badge">
-              <i>alarm</i>
+              <i @click="$refs.layoutModal.open()">link</i>
             </div>
             <!-- date timestamp -->
             <div class="timeline-date text-italic">
@@ -29,9 +29,7 @@
               </div>
               <div class="card-media">
                 <img :src="weekly.image" alt="">
-                <button class="grey circular" @click="$refs.layoutModal.open()">
-                  <i>link</i>
-                </button>
+                
               </div>
               <div class="card-content">
                 <div>{{ weekly.preach.topic }}</div>
@@ -68,7 +66,7 @@
       <button
         v-back-to-top.animate="{offset: 500, duration: 200}"
         class="primary circular fixed-bottom-right animate-pop"
-        style="margin: 0 15px 75px 0"
+        style="margin: 0 15px 15px 0"
       >
         <i>keyboard_arrow_up</i>
       </button>
