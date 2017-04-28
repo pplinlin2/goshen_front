@@ -1,41 +1,43 @@
 <template>
-  <!-- root node required -->
   <div>
-    <!-- your content -->
     <div class="layout-padding">
-      <!-- if you want automatic padding -->
-      <q-infinite-scroll :handler="refresher">
+      
+      <!-- Infinite Scroll -->
+      <q-infinite-scroll :handler="refresher" ref="infiniteScroll">
 
+        <!-- Timeline CSS -->
         <div class="timeline">
-          <!-- label -->
-          <div class="timeline-label">
-            <h4 class="bg-white text-italic">
-              2017 May
-            </h4>
-          </div>
-          <!-- item -->
-          <div v-for="(weekly, index) in weeklies" class="timeline-item">
-            <div class="timeline-badge">
-              <i @click="$refs.layoutModal.open()">link</i>
-            </div>
-            <!-- date timestamp -->
-            <div class="timeline-date text-italic">
-              <div>June 16th, 2016</div>
+          <div v-for="(bulletin, index) in bulletins">
+            <!-- label -->
+            <div v-if="bulletin.first" class="timeline-label">
+              <h4 class="bg-white text-italic">
+                2017 May
+              </h4>
             </div>
 
-            <div class="card">
-              <div class="card-title">
-                {{ weekly.title }}
+            <div class="timeline-item">
+              <button class="timeline-badge" @click="loadBulletin(bulletin.date), $refs.layoutModal.open()">
+                <i>link</i>
+              </button>
+
+              <div class="timeline-date text-italic larger-font">
+                <div>{{ bulletin.date }}</div>
               </div>
-              <div class="card-media">
-                <img :src="weekly.image" alt="">
-                
-              </div>
-              <div class="card-content">
-                <div>{{ weekly.preach.topic }}</div>
-                <div class="light"> - {{ weekly.preach.preacher }}</div>
-                <div>{{ weekly.verses.content }}</div>
-                <div class="light"> - {{ weekly.verses.cite }}</div>
+
+              <div class="card">
+                <div class="card-title">
+                  {{ bulletin.title }}
+                </div>
+                <div class="card-media">
+                  <img :src="bulletin.image" alt="">
+                  
+                </div>
+                <div class="card-content">
+                  <div>{{ bulletin.preach.topic }}</div>
+                  <div class="text-grey-13"> - {{ bulletin.preach.preacher }}</div>
+                  <div>{{ bulletin.verses.content }}</div>
+                  <div class="text-grey-13"> - {{ bulletin.verses.cite }}</div>
+                </div>
               </div>
             </div>
           </div>
@@ -46,6 +48,7 @@
         </div>
       </q-infinite-scroll>
 
+      <!-- Modal -->
       <q-modal ref="layoutModal" class="maximized" :content-css="{minWidth: '80vw', minHeight: '80vh'}">
         <q-layout>
           <div slot="header" class="toolbar">
@@ -63,6 +66,7 @@
         </q-layout>
       </q-modal>
 
+      <!-- Back to Top -->
       <button
         v-back-to-top.animate="{offset: 500, duration: 200}"
         class="primary circular fixed-bottom-right animate-pop"
@@ -70,6 +74,7 @@
       >
         <i>keyboard_arrow_up</i>
       </button>
+
     </div>
   </div>
 </template>
@@ -77,48 +82,21 @@
 <script>
 import Weekly from '../../components/Weekly/Index.vue'
 import ContextMenu from '../../components/Common/ContextMenu.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      weeklies: [
-        {
-          'title': '顯後第六主日', 
-          'image': 'https://goshentp.files.wordpress.com/2011/09/img005-05-1-e1316700241931.jpg', 
-          'preach': {
-            'topic': '天大的好消息', 
-            'preacher': '陳志宏 牧師', 
-          }, 
-          'verses': {
-            'content': '同我上去的眾弟兄使百姓的心消化；但我專心跟從耶和華─我的神。', 
-            'cite': '約書亞十四:8', 
-          }
-        }, {
-          'title': '顯後第六主日', 
-          'image': 'https://pic.pimg.tw/bethelaudio/1479450218-3011885985_n.jpg?v=1479450254', 
-          'preach': {
-            'topic': '天大的好消息', 
-            'preacher': '陳志宏 牧師', 
-          }, 
-          'verses': {
-            'content': '同我上去的眾弟兄使百姓的心消化；但我專心跟從耶和華─我的神。', 
-            'cite': '約書亞十四:8', 
-          }
-        }, 
-      ], 
     }
   }, 
+  computed: {
+    ...mapState(['bulletins']), 
+  }, 
   methods: {
+    ...mapActions(['loadBulletins', 'loadBulletin', ]), 
     refresher (index, done) {
-      setTimeout(() => {
-        let weeklies = []
-        for (let i = 0; i < 2; i++) {
-          weeklies.push(this.weeklies[i])
-        }
-        this.weeklies = this.weeklies.concat(weeklies)
-        done()
-      }, 2500)
-    }, 
+      this.loadBulletins(done)
+    }
   }, 
   components: {
     ContextMenu, 
@@ -128,10 +106,7 @@ export default {
 </script>
 
 <style scoped>
-  .largerFont {
-    font-size: 18px;
-  }
-  .light {
-    color: #999999;
+  .larger-font {
+    font-size: 24px;
   }
 </style>
