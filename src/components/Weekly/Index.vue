@@ -23,7 +23,18 @@
         </q-collapsible>
         <q-collapsible group="weekly" icon="people" label="小組聚會">
           <div>
-            {{ bulletin.fellowship }}
+            <ol class="simple-list">
+              <li v-for="program in bulletin.fellowship">
+                <div class="text-justify">
+                  <b>{{ program.title }}</b>
+                  <br>
+                  <div v-if="Array.isArray(program.content)">
+                    <div v-for="subprogram in program.content">{{ subprogram }}</div>
+                  </div>
+                  <div v-else>{{ program.content }}</div>
+                  </div>
+              </li>
+            </ol>
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="people_outline" label="代禱事項">
@@ -32,13 +43,15 @@
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="message" label="主日信息">
-          <div v-html="bulletin.messages">
+          <div class="text-justify text-indent-two-chars" v-html="bulletin.messages">
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="announcement" label="報告事項">
-          <ol class="circles-list">
+          <ol class="simple-list">
             <li v-for="announcement in bulletin.announcements">
-              {{ announcement }}
+              <div class="text-justify">
+                {{ announcement }}
+              </div>
             </li>
           </ol>
         </q-collapsible>
@@ -67,38 +80,43 @@ export default {
   .larger-font {
     /*font-size: 18px;*/
   }
-  ol.circles-list {
+  .text-justify {
+    text-align:justify;
+  }
+  .text-indent-two-chars {
+    text-indent: 2em;
+  }
+  /* http://codeitdown.com/ordered-list-css-styles/ */
+  ol.simple-list {
     list-style-type: none;
     list-style-type: decimal !ie; /*IE 7- hack*/
      
     margin: 0;
-    margin-left: 4em;
+    margin-left: 3em;
     padding: 0;
      
     counter-reset: li-counter;
   }
-  ol.circles-list > li{
-      position: relative;
-      margin-bottom: 20px;
-      padding-left: 0.5em;
-      min-height: 3em;
+  ol.simple-list > li{
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 0.5em;
+    min-height: 3em;
+    border-left: 2px solid #CCCCCC;
   }
-  ol.circles-list > li:before {
-      position: absolute;
-      top: 0;
-      left: -1.33em;
-      width: 1.2em;
-      height: 1.2em;
-       
-      font-size: 2.5em;
-      line-height: 1.2;
-      text-align: center;
-      color: #f5f5f5;
-   
-      border: 3px solid #c5c5c5;
-      border-radius: 50%;
-      background-color: #999999;
-      content: counter(li-counter);
-      counter-increment: li-counter;
+  ol.simple-list > li:before {
+    position: absolute;
+    top: 0;
+    left: -1em;
+    width: 0.8em;
+     
+    font-size: 3em;
+    line-height: 1;
+    font-weight: bold;
+    text-align: right;
+    color: #999999;
+ 
+    content: counter(li-counter);
+    counter-increment: li-counter;
   }
 </style>

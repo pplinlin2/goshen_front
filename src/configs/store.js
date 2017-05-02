@@ -36,13 +36,13 @@ let actions = {
     setTimeout(() => {
       commit('LOAD_BULLETINS', bulletins_data[obj.index])
       obj.done()
-    }, 2000)
+    }, 1000)
   },  
   loadBulletin: ({ commit }, date) => {
     console.log('loading bulletin ' + date)
     setTimeout(() => {
       commit('LOAD_BULLETIN', bulletin_data)
-    }, 2000)
+    }, 1000)
   }, 
   loadGalleries: ({ commit }) => {
     setTimeout(() => {
