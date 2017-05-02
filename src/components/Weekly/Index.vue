@@ -32,16 +32,15 @@
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="message" label="主日信息">
-          <div>
-            {{ bulletin.messages }}
+          <div v-html="bulletin.messages">
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="announcement" label="報告事項">
-          <ul>
+          <ol class="circles-list">
             <li v-for="announcement in bulletin.announcements">
               {{ announcement }}
             </li>
-          </ul>
+          </ol>
         </q-collapsible>
       </div>
     </div>
@@ -67,5 +66,39 @@ export default {
 <style scoped>
   .larger-font {
     /*font-size: 18px;*/
+  }
+  ol.circles-list {
+    list-style-type: none;
+    list-style-type: decimal !ie; /*IE 7- hack*/
+     
+    margin: 0;
+    margin-left: 4em;
+    padding: 0;
+     
+    counter-reset: li-counter;
+  }
+  ol.circles-list > li{
+      position: relative;
+      margin-bottom: 20px;
+      padding-left: 0.5em;
+      min-height: 3em;
+  }
+  ol.circles-list > li:before {
+      position: absolute;
+      top: 0;
+      left: -1.33em;
+      width: 1.2em;
+      height: 1.2em;
+       
+      font-size: 2.5em;
+      line-height: 1.2;
+      text-align: center;
+      color: #f5f5f5;
+   
+      border: 3px solid #c5c5c5;
+      border-radius: 50%;
+      background-color: #999999;
+      content: counter(li-counter);
+      counter-increment: li-counter;
   }
 </style>

@@ -22,6 +22,8 @@ let mutations = {
     state.bulletins = state.bulletins.concat(bulletins)
   }, 
   LOAD_BULLETIN: (state, result) => {
+    var marked = require('marked')
+    result.messages = marked(result.messages)
     state.bulletin = result
   }, 
   LOAD_GALLERIES: (state, result) => {
