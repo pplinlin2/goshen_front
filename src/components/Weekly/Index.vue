@@ -37,9 +37,11 @@
           </div>
         </q-collapsible>
         <q-collapsible group="weekly" icon="announcement" label="報告事項">
-          <div>
-            {{ bulletin.announcement }}
-          </div>
+          <ul>
+            <li v-for="announcement in bulletin.announcements">
+              {{ announcement }}
+            </li>
+          </ul>
         </q-collapsible>
       </div>
     </div>

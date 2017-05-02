@@ -9,9 +9,9 @@
         <div class="timeline">
           <div v-for="(bulletin, index) in bulletins">
             <!-- label -->
-            <div v-if="bulletin.first" class="timeline-label">
+            <div v-if="bulletin.latest" class="timeline-label">
               <h4 class="bg-white text-italic">
-                2017 May
+                2017 April
               </h4>
             </div>
 
@@ -95,7 +95,7 @@ export default {
   methods: {
     ...mapActions(['loadBulletins', 'loadBulletin', ]), 
     refresher (index, done) {
-      this.loadBulletins(done)
+      this.loadBulletins({index, done})
     }
   }, 
   components: {
