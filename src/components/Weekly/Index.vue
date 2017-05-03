@@ -29,7 +29,10 @@
                   <b>{{ program.title }}</b>
                   <br>
                   <div v-if="Array.isArray(program.content)">
-                    <div v-for="subprogram in program.content">{{ subprogram }}</div>
+                    <ol class="block-list">
+                      <li v-for="subprogram in program.content">{{ subprogram }}</li>
+                    </ol>
+                    <!-- <div v-for="subprogram in program.content">{{ subprogram }}</div> -->
                   </div>
                   <div v-else>{{ program.content }}</div>
                   </div>
@@ -80,13 +83,14 @@ export default {
   .larger-font {
     /*font-size: 18px;*/
   }
-  .text-justify {
-    text-align:justify;
-  }
   .text-indent-two-chars {
     text-indent: 2em;
   }
+  ul {
+    padding-left: 1em;
+  }
   /* http://codeitdown.com/ordered-list-css-styles/ */
+  /* simple-list */
   ol.simple-list {
     list-style-type: none;
     list-style-type: decimal !ie; /*IE 7- hack*/
@@ -118,5 +122,23 @@ export default {
  
     content: counter(li-counter);
     counter-increment: li-counter;
+  }
+
+  /* block-list */
+  ol.block-list {
+    list-style-type: none;
+    list-style-type: decimal !ie; /*IE 7- hack*/
+     
+    margin: 0;
+    padding: 0;
+     
+    counter-reset: li-counter;
+  }
+  ol.block-list > li{
+    position: relative;
+    margin-top: 10px;
+    padding: 10px;
+    border-right: 2px solid #CCCCCC;
+    background-color: #f5f5f5;
   }
 </style>

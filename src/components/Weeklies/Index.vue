@@ -16,7 +16,7 @@
             </div>
 
             <div class="timeline-item">
-              <button class="timeline-badge" @click="loadBulletin(bulletin.date), $refs.layoutModal.open()">
+              <button class="timeline-badge" @click="loadBulletinPage(bulletin.date)">
                 <i>link</i>
               </button>
 
@@ -56,11 +56,45 @@
               <i>keyboard_arrow_left</i>
             </button>
             <q-toolbar-title :padding="1">
-              Header
+              Sunday bulletin
             </q-toolbar-title>
           </div>
+          <div slot="footer" class="toolbar primary">
+            <q-tabs
+              :refs="$refs"
+              default-tab="tab-worship"
+              ref="bulleinTab"
+            >
+              <q-tab name="tab-worship" icon="cloud_queue">
+                主日崇拜
+              </q-tab>
+              <q-tab name="tab-cell-group" icon="people">
+                小組聚會
+              </q-tab>
+              <q-tab name="tab-sermon" icon="message">
+                主日信息
+              </q-tab>
+              <q-tab name="tab-announcement" icon="announcement">
+                報告事項
+              </q-tab>
+            </q-tabs>
+          </div>
+
           <div class="layout-view">
-            <weekly></weekly>
+            <div class="layout-padding">
+              <div ref="tab-worship">
+                <worship />
+              </div>
+              <div ref="tab-cell-group">
+                <cell-group />
+              </div>
+              <div ref="tab-sermon">
+                <sermon />
+              </div>
+              <div ref="tab-announcement">
+                <announcement />
+              </div>
+            </div>
           </div>
           <context-menu></context-menu>
         </q-layout>
@@ -80,7 +114,10 @@
 </template>
 
 <script>
-import Weekly from '../../components/Weekly/Index.vue'
+import Worship from '../../components/Weekly/Worship.vue'
+import CellGroup from '../../components/Weekly/CellGroup.vue'
+import Sermon from '../../components/Weekly/Sermon.vue'
+import Announcement from '../../components/Weekly/Announcement.vue'
 import ContextMenu from '../../components/Common/ContextMenu.vue'
 import { mapState, mapActions } from 'vuex'
 
@@ -96,11 +133,19 @@ export default {
     ...mapActions(['loadBulletins', 'loadBulletin', ]), 
     refresher (index, done) {
       this.loadBulletins({index, done})
-    }
+    }, 
+    loadBulletinPage (date) {
+      this.loadBulletin(date)
+      this.$refs.bulleinTab.setActiveTab('tab-worship')
+      this.$refs.layoutModal.open()
+    }, 
   }, 
   components: {
     ContextMenu, 
-    Weekly, 
+    Worship, 
+    CellGroup, 
+    Sermon, 
+    Announcement, 
   }, 
 }
 </script>
