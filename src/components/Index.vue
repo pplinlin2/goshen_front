@@ -21,16 +21,16 @@
 
       <div class="list no-border platform-delimiter">
         <q-drawer-link icon="home" :to="{path: '/', exact: true}">
-          Home
+          {{ $t("home") }}
         </q-drawer-link>
         <q-drawer-link icon="timeline" :to="{path: '/weeklies', exact: true}">
-          Weeklies
+          {{ $t("sundayBulletin") }}
         </q-drawer-link>
         <q-drawer-link icon="photo" :to="{path: '/gallery', exact: true}">
-          Gallery
+          {{ $t("gallery") }}
         </q-drawer-link>
         <q-drawer-link icon="settings" :to="{path: '/settings', exact: true}">
-          Settings
+          {{ $t("settings") }}
         </q-drawer-link>
       </div>
     </q-drawer>

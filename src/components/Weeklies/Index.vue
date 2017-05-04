@@ -66,16 +66,16 @@
               ref="bulleinTab"
             >
               <q-tab name="tab-worship" icon="cloud_queue">
-                主日崇拜
+                {{ $t("worship") }}
               </q-tab>
               <q-tab name="tab-cell-group" icon="people">
-                小組聚會
+                {{ $t("cellGroup") }}
               </q-tab>
               <q-tab name="tab-sermon" icon="message">
-                主日信息
+                {{ $t("sermon") }}
               </q-tab>
               <q-tab name="tab-announcement" icon="announcement">
-                報告事項
+                {{ $t("announcement") }}
               </q-tab>
             </q-tabs>
           </div>

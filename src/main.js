@@ -10,6 +10,7 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
 import store from './configs/store'
+import i18n from './configs/i18n'
 
 Vue.use(Quasar) // Install Quasar Framework
 
@@ -19,6 +20,7 @@ Quasar.start(() => {
     el: '#q-app',
     router,
     store, 
+    i18n, 
     render: h => h(require('./App'))
   })
 })
